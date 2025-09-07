@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdoptaPets Perú - Infografía</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #FF9800;
+            --accent: #2196F3;
+            --light: #F5F5F5;
+            --dark: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .diagram {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8e063 0%, #56ab2f 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #777;
+            border-top: 1px solid #ddd;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .mermaid {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>AdoptaPets Perú</h1>
+            <p class="subtitle">Aplicación móvil para adopción de mascotas - Contribuyendo al ODS 15: Vida de
+                Ecosistemas Terrestres</p>
+        </header>
+
+        <div class="highlight">
+            <h2>Problema</h2>
+            <p>En Perú, existen más de 6 millones de perros y gatos en situación de calle, lo que genera problemas de
+                salud pública, maltrato animal y sobrepoblación en refugios.</p>
+            <p>Nuestra aplicación busca conectar refugios con adoptantes potenciales para promover la tenencia
+                responsable de mascotas.</p>
+        </div>
+
+        <div class="card">
+            <h3 class="card-title">Diagrama de Casos de Uso</h3>
+            <div class="diagram">
+                <div class="mermaid">
+                    flowchart TD
+                    subgraph A [Actores Externos]
+                    direction TB
+                    A1[Adoptante]
+                    A2[Refugio]
+                    A3[Administrador]
+                    end
+
+                    subgraph S [Sistema - AdoptaPets Perú]
+                    direction TB
+                    subgraph UC [Casos de Uso]
+                    U1[Buscar Mascotas]
+                    U2[Gestionar Perfil de Mascota<br>Crear, Editar, Desactivar]
+                    U3[Gestionar Solicitud de Adopción<br>Aprobar, Rechazar]
+                    U4[Gestionar Usuarios y Refugios]
+                    end
+                    end
+
+                    A1 --> U1
+                    A1 --> U3
+                    A2 --> U2
+                    A2 --> U3
+                    A3 --> U4
+                </div>
+            </div>
+        </div>
+
+        <div class="two-columns">
+            <div class="card">
+                <h3 class="card-title">Diagrama de Componentes (IPO)</h3>
+                <div class="diagram">
+                    <div class="mermaid">
+                        flowchart LR
+                        subgraph Entrada
+                        direction LR
+                        E1[App Móvil<br>Interfaz Usuario]
+                        E2[Panel Web<br>Refugio/Admin]
+                        end
+
+                        subgraph Proceso
+                        direction TB
+                        P1[Componente<br>Búsqueda y Match]
+                        P2[Componente<br>Gestión de Perfiles]
+                        P3[Componente<br>Proceso de Adopción]
+                        P4[Componente<br>Notificaciones]
+                        end
+
+                        subgraph Salida
+                        direction LR
+                        S1[Base de Datos<br>Mascotas, Usuarios]
+                        S2[Email/SMS<br>Confirmación]
+                        S3[Reportes<br>Dashboard]
+                        end
+
+                        Entrada --> Proceso
+                        Proceso --> Salida
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Arquitectura de Alto Nivel</h3>
+                <div class="diagram">
+                    <div class="mermaid">
+                        flowchart TB
+                        U[Usuario Final]
+
+                        subgraph S [Sistema AdoptaPets Perú]
+                        C1[Frontend<br>Aplicación Móvil]
+                        C2[Frontend<br>Panel Web Admin]
+                        C3[Backend API<br>Servidor Principal]
+                        C4[Base de Datos<br>PostgreSQL]
+                        C5[Servicio de<br>Almacenamiento Cloud]
+                        C6[Servicio de<br>Notificaciones]
+                        end
+
+                        E1[(External Service<br>Twilio SMS)]
+                        E2[(External Service<br>Cloudinary)]
+
+                        U --> C1
+                        U --> C2
+                        C1 --> C3
+                        C2 --> C3
+                        C3 --> C4
+                        C3 --> C5
+                        C3 --> C6
+                        C6 --> E1
+                        C5 --> E2
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="card-title">Arquitectura en Capas de Software</h3>
+            <div class="diagram">
+                <div class="mermaid">
+                    flowchart TB
+                    subgraph Capa_de_Presentación
+                    P1[UI: App Móvil<br>iOS & Android]
+                    P2[UI: Web App<br>React.js]
+                    end
+
+                    subgraph Capa_de_Lógica_de_Negocio
+                    B1[Servicios de Aplicación<br>UserService, PetService]
+                    B2[Reglas de Negocio<br>Validador de Adopción]
+                    end
+
+                    subgraph Capa_de_Acceso_a_Datos
+                    D1[Repositorios<br>PetRepository, UserRepository]
+                    D2[ORM<br>Prisma / Hibernate]
+                    end
+
+                    subgraph Capa_de_Persistencia
+                    DB[(Base de Datos<br>PostgreSQL)]
+                    FS[Almacenamiento de Archivos<br>Amazon S3]
+                    end
+
+                    P1 --> B1
+                    P2 --> B1
+                    B1 --> D1
+                    B1 --> B2
+                    D1 --> D2
+                    D2 --> DB
+                    D2 --> FS
+                </div>
+            </div>
+        </div>
+
+        <div class="two-columns">
+            <div class="card">
+                <h3 class="card-title">Arquitectura Monolítica vs Cliente-Servidor</h3>
+                <div class="diagram">
+                    <div class="mermaid">
+                        flowchart LR
+                        subgraph Arquitectura_Monolítica
+                        App[App Monolítica<br>UI, Lógica, Datos<br>en un solo componente]
+                        App --> DB1[(BD Única)]
+                        end
+
+                        subgraph Arquitectura_Cliente-Servidor
+                        C[Cliente<br>App Móvil/Web]
+                        S[Servidor<br>Backend & BD]
+                        C -- Solicitudes HTTP --> S
+                        S -- Respuestas JSON --> C
+                        S --> DB2[(Base de Datos)]
+                        end
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Arquitectura Orientada a Servicios (SOA)</h3>
+                <div class="diagram">
+                    <div class="mermaid">
+                        flowchart TB
+                        C[Cliente]
+
+                        subgraph ESB [Enterprise Service Bus - ESB]
+                        B[Bus de Servicios<br>Gestión de Rutas,<br>Transformación de Mensajes]
+                        end
+
+                        subgraph Servicios
+                        S1[Servicio de<br>Gestión de Usuarios]
+                        S2[Servicio de<br>Gestión de Mascotas]
+                        S3[Servicio de<br>Proceso de Adopción]
+                        S4[Servicio de<br>Notificaciones]
+                        end
+
+                        S1 --> DB1[(BD Usuarios)]
+                        S2 --> DB2[(BD Mascotas)]
+                        S3 --> DB3[(BD Adopciones)]
+
+                        C --> B
+                        B --> S1
+                        B --> S2
+                        B --> S3
+                        B --> S4
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="card-title">Arquitectura de Microservicios</h3>
+            <div class="diagram">
+                <div class="mermaid">
+                    flowchart TB
+                    C[Cliente<br>App Móvil/Web]
+
+                    G[API Gateway<br>Autenticación, Rate Limiting,<br>Enrutamiento]
+
+                    subgraph Microservicios
+                    M1[MS Usuarios<br>Puerto: 3001]
+                    M2[MS Mascotas<br>Puerto: 3002]
+                    M3[MS Adopciones<br>Puerto: 3003]
+                    M4[MS Notificaciones<br>Puerto: 3004]
+                    end
+
+                    M1 --> DB1[(BD Usuarios)]
+                    M2 --> DB2[(BD Mascotas)]
+                    M3 --> DB3[(BD Adopciones)]
+                    M4 --> Q[Cola de Mensajes<br>RabbitMQ]
+
+                    C --> G
+                    G --> M1
+                    G --> M2
+                    G --> M3
+                    G --> M4
+
+                    M3 --> M4
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="card-title">Flujo de Registro de Refugio</h3>
+            <div class="diagram">
+                <div class="mermaid">
+                    sequenceDiagram
+                    actor Refugio as Refugio (Usuario)
+                    participant App as App Móvil
+                    participant GW as API Gateway
+                    participant Auth as MS Autenticación
+                    participant Val as MS Validación
+                    participant RU as MS Refugios
+                    participant BD as BD Refugios
+
+                    Refugio->>App: Completa formulario de registro
+                    App->>GW: POST /shelters (Datos del Refugio + JWT)
+                    GW->>Auth: Verifica JWT
+                    Auth-->>GW: Token válido
+                    GW->>Val: Valida datos de entrada (RUC, dirección)
+                    Val-->>GW: Datos válidos
+                    GW->>RU: Solicita crear nuevo refugio
+                    RU->>BD: INSERT nuevo refugio (asociado al UserID)
+                    BD-->>RU: OK
+                    RU-->>GW: 201 Created (Éxito)
+                    GW-->>App: Éxito
+                    App-->>Refugio: "Refugio registrado correctamente"
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Proyecto de curso - ODS 15: Vida de Ecosistemas Terrestres</p>
+            <p class="logo">AdoptaPets Perú</p>
+            <p>© 2023 - Todos los derechos reservados</p>
+        </footer>
+    </div>
+</body>
+
+</html>
